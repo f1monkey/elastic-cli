@@ -26,3 +26,23 @@ $ elastic-cli index exists %name%
 ```
 $ elastic-cli index delete %name%
 ```
+
+## Development
+
+* Install required VS Code extensions:
+```
+$ cat .vs-code-extensions | xargs -L 1 code --install-extension
+```
+* Copy `docker-compose.override.yml.dist` to `docker-compose.override.yml`
+```
+$ cp docker-compose.override.yml.dist docker-compose.override.yml
+```
+* Create docker network (if not exists)
+```
+$ docker network create f1monkey
+```
+* Start container
+```
+$ docker-compose up -d
+```
+* Connect to the docker container using [Remote Containers](https://code.visualstudio.com/docs/remote/containers) extension
