@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  go:
+    build:
+      context: ./docker/go
+      args:
+        MODULE_PATH: github.com/f1monkey/elastic-cli
+    volumes:
+      - "./:/go/src/github.com/f1monkey/elastic-cli"
+    environment:
+      ELASTICSEARCH_URL: http://f1monkey-elastic:9200
+    networks:
+      f1monkey:
+
+networks:
+  f1monkey:
+    external: true
