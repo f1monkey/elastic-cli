@@ -9,8 +9,8 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-// GetIndexCommands returns list of commands to manipulate ES indexes
-func GetIndexCommands() *cli.Command {
+// GetCommands returns list of commands to manipulate ES indexes
+func GetCommands() *cli.Command {
 	result := cli.Command{
 		Name:  "index",
 		Usage: "Index manipulation commands",

@@ -13,7 +13,7 @@ func main() {
 		Name:  "elastic-cli",
 		Usage: "Set of CLI tools for ElasticSearch",
 		Commands: []*cli.Command{
-			index.GetIndexCommands(),
+			index.GetCommands(),
 		},
 	}
 
