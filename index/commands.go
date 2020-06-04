@@ -116,7 +116,7 @@ func printIndexList(client *elastic.Client) error {
 
 	fmt.Println("Index list:")
 	for _, name := range names {
-		fmt.Println(name)
+		fmt.Printf("\t- %s\n", name)
 	}
 
 	return nil
