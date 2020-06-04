@@ -8,7 +8,7 @@ Example with custom elastic server URL:
 ```
 $ ELASTICSEARCH_URL=http://localhost:9200 elastic-cli index list
 ```
-### Index commands
+#### Index commands
 
 * List existing indexes
 ```
@@ -25,6 +25,21 @@ $ elastic-cli index exists %name%
 * Delete index
 ```
 $ elastic-cli index delete %name%
+```
+
+#### Alias commands
+
+* List existing aliases
+```
+$ elastic-cli alias list
+```
+* Create index alias
+```
+$ elastic-cli alias create %index_name% %alias_name%
+```
+* Delete index alias
+```
+$ elastic-cli alias delete %index_name% %alias_name%
 ```
 
 ## Development
