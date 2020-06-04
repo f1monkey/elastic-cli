@@ -46,7 +46,7 @@ $ elastic-cli alias delete %index_name% %alias_name%
 
 * Install required VS Code extensions:
 ```
-$ cat .vs-code-extensions | xargs -L 1 code --install-extension
+$ cat .vscode/.vscode-extensions | xargs -L 1 code --install-extension
 ```
 * Copy `docker-compose.override.yml.dist` to `docker-compose.override.yml`
 ```
