@@ -3,11 +3,16 @@ package index
 import (
 	"context"
 
-	elastic "github.com/olivere/elastic/v7"
+	client "github.com/f1monkey/elastic-cli/client"
 )
 
-func createIndex(client *elastic.Client, name string) error {
-	_, err := client.CreateIndex(name).Do(context.Background())
+func createIndex(name string) error {
+	es, err := client.NewClient()
+	if err != nil {
+		return err
+	}
+
+	_, err = es.CreateIndex(name).Do(context.Background())
 
 	return err
 }

@@ -3,13 +3,18 @@ package index
 import (
 	"context"
 
-	elastic "github.com/olivere/elastic/v7"
+	client "github.com/f1monkey/elastic-cli/client"
 )
 
-type indexExistsChecker func(client *elastic.Client, name string) (bool, error)
+type indexExistsChecker func(name string) (bool, error)
 
-func checkIfIndexExists(client *elastic.Client, name string) (bool, error) {
-	result, err := client.IndexExists(name).Do(context.Background())
+func checkIfIndexExists(name string) (bool, error) {
+	es, err := client.NewClient()
+	if err != nil {
+		return false, err
+	}
+
+	result, err := es.IndexExists(name).Do(context.Background())
 
 	return result, err
 }

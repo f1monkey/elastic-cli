@@ -1,11 +1,16 @@
 package index
 
-type indexNamesGetter interface {
-	IndexNames() ([]string, error)
-}
+import (
+	client "github.com/f1monkey/elastic-cli/client"
+)
 
-func getIndexList(client indexNamesGetter) ([]string, error) {
-	names, err := client.IndexNames()
+func getIndexList() ([]string, error) {
+	es, err := client.NewClient()
+	if err != nil {
+		return nil, err
+	}
+
+	names, err := es.IndexNames()
 	if err != nil {
 		return nil, err
 	}

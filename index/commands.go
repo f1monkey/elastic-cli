@@ -3,9 +3,7 @@ package index
 import (
 	"fmt"
 
-	client "github.com/f1monkey/elastic-cli/client"
 	command "github.com/f1monkey/elastic-cli/command"
-	elastic "github.com/olivere/elastic/v7"
 	"github.com/urfave/cli/v2"
 )
 
@@ -19,12 +17,7 @@ func GetCommands() *cli.Command {
 				Name:  "list",
 				Usage: "List existing indexes",
 				Action: func(c *cli.Context) error {
-					client, err := client.NewClient()
-					if err != nil {
-						return err
-					}
-
-					return printIndexList(client)
+					return printIndexList()
 				},
 			},
 			{
@@ -36,12 +29,7 @@ func GetCommands() *cli.Command {
 						return err
 					}
 
-					client, err := client.NewClient()
-					if err != nil {
-						return err
-					}
-
-					result, err := checkIfIndexExists(client, indexName)
+					result, err := checkIfIndexExists(indexName)
 					if err != nil {
 						return err
 					}
@@ -64,12 +52,7 @@ func GetCommands() *cli.Command {
 						return err
 					}
 
-					client, err := client.NewClient()
-					if err != nil {
-						return err
-					}
-
-					err = createIndex(client, indexName)
+					err = createIndex(indexName)
 					if err != nil {
 						return err
 					}
@@ -87,13 +70,7 @@ func GetCommands() *cli.Command {
 						return err
 					}
 
-					client, err := client.NewClient()
-					client.Reindex()
-					if err != nil {
-						return err
-					}
-
-					err = deleteIndex(client, indexName)
+					err = deleteIndex(indexName)
 					if err != nil {
 						return err
 					}
@@ -108,8 +85,8 @@ func GetCommands() *cli.Command {
 	return &result
 }
 
-func printIndexList(client *elastic.Client) error {
-	names, err := getIndexList(client)
+func printIndexList() error {
+	names, err := getIndexList()
 	if err != nil {
 		return err
 	}
